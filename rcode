@@ -5,7 +5,7 @@ library('wordcloud')
 library('SnowballC')
 
 ### load text
-jobs = Corpus(DirSource('textfile/'))
+jobs = Corpus(DirSource('textfile/'))  ## create a folder named"textfile" and save your text file inot the folder
 inspect(jobs)
 
 ### clean the content
