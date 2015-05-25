@@ -1,0 +1,21 @@
+### set directory and load packages
+
+library('tm')
+library('wordcloud')
+library('SnowballC')
+
+### load text
+jobs = Corpus(DirSource('textfile/'))
+inspect(jobs)
+
+### clean the content
+
+jobs = tm_map(jobs, tolower) # to lower case
+jobs = tm_map(jobs, removeNumbers) # remove all numbers
+jobs = tm_map(jobs, removePunctuation) # remove puncturation
+jobs = tm_map(jobs, removeWords, stopwords('english')) # remove commmone stopwords
+jobs = tm_map(jobs, stemDocument) # test stemming
+jobs = tm_map(jobs, stripWhitespace) # remove extra whitespace
+jobs = tm_map(jobs, PlainTextDocument)
+inspect(jobs)
+wordcloud(jobs, scale = c(5,0.5), max.words = 200,random.order = FALSE, rot.per = 0.05, use.r.layout = FALSE, colors = brewer.pal(8,"Dark2"))
